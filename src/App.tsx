@@ -20,8 +20,8 @@ const BRAND_RED = "#8B0000";
 // or upload your photos to a hosting service and paste the links here.
 // ============================================================================
 const INSTAGRAM_PHOTOS = [
-  "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=500&auto=format&fit=crop",
+  "https://www.instagram.com/p/DVwt6ukiCPv/?igsh=MWw1aDdjbDN3cDU4Mw==q=80&w=500&auto=format&fit=crop",
+  "https://www.instagram.com/reel/DVZHu_nCE26/?igsh=Zno4c2JoY25sbTRv=80&w=500&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=500&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=500&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&w=500&auto=format&fit=crop",
