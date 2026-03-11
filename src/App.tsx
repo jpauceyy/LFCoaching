@@ -174,7 +174,7 @@ export default function App() {
                 features: ["Everything in Pro", "24/7 WhatsApp Support", "Video Call Check-ins", "Supplement Protocol"],
               },
               {
-                name: "Transformation",
+                name: "Elite Plus",
                 price: "£199",
                 desc: "The ultimate 1-on-1 coaching experience.",
                 features: ["Everything in Elite", "Daily Accountability", "Custom Meal Prep Guide", "Mindset Coaching"],
