@@ -158,7 +158,7 @@ export default function App() {
                 name: "Starter",
                 price: "£49",
                 desc: "Perfect for self-starters needing direction.",
-                features: ["Custom Workout Plan", "Monthly Check-in", "Form Review", "App Access"],
+                features: ["Custom Workout Plan", "Monthly Check-in", "Form Review"],
               },
               {
                 name: "Pro",
@@ -186,9 +186,8 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`bg-zinc-900 p-8 flex flex-col relative group overflow-hidden ${
-                  pkg.highlight ? "border-t-4 border-[#8B0000]" : "border-t-4 border-zinc-800"
-                }`}
+                className={`bg-zinc-900 p-8 flex flex-col relative group overflow-hidden ${pkg.highlight ? "border-t-4 border-[#8B0000]" : "border-t-4 border-zinc-800"
+                  }`}
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-[#8B0000] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
                 <h3 className="text-2xl font-heading font-bold uppercase tracking-wider mb-2">
@@ -211,11 +210,10 @@ export default function App() {
                 </ul>
                 <a
                   href="#apply"
-                  className={`w-full py-3 text-center font-bold uppercase tracking-wider text-sm transition-colors ${
-                    pkg.highlight
-                      ? "bg-[#8B0000] hover:bg-red-900 text-white"
-                      : "bg-zinc-800 hover:bg-zinc-700 text-white"
-                  }`}
+                  className={`w-full py-3 text-center font-bold uppercase tracking-wider text-sm transition-colors ${pkg.highlight
+                    ? "bg-[#8B0000] hover:bg-red-900 text-white"
+                    : "bg-zinc-800 hover:bg-zinc-700 text-white"
+                    }`}
                 >
                   Choose Plan
                 </a>
@@ -308,7 +306,7 @@ export default function App() {
               <div className="grid grid-cols-3 gap-6 mb-10">
                 <div>
                   <div className="text-3xl md:text-4xl font-extrabold font-mono text-[#8B0000] mb-1">
-                    200+
+                    30+
                   </div>
                   <div className="text-xs text-gray-400 uppercase tracking-wider font-bold">
                     Clients Coached
@@ -316,7 +314,7 @@ export default function App() {
                 </div>
                 <div>
                   <div className="text-3xl md:text-4xl font-extrabold font-mono text-[#8B0000] mb-1">
-                    500kg+
+                    100kg+
                   </div>
                   <div className="text-xs text-gray-400 uppercase tracking-wider font-bold">
                     Fat Lost
@@ -324,7 +322,7 @@ export default function App() {
                 </div>
                 <div>
                   <div className="text-3xl md:text-4xl font-extrabold font-mono text-[#8B0000] mb-1">
-                    8+
+                    2+
                   </div>
                   <div className="text-xs text-gray-400 uppercase tracking-wider font-bold">
                     Years Exp
@@ -425,6 +423,8 @@ export default function App() {
       </section>
 
       {/* 4. Fitness Goal Form (Lead Capture) */}
+
+      {/* 4. Fitness Goal Form (Lead Capture) */}
       <section id="apply" className="py-24 bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -438,9 +438,14 @@ export default function App() {
           </div>
 
           <form
+            action="https://formsubmit.co/contact@lukefenners.com"
+            method="POST"
             className="space-y-8 bg-zinc-950 p-8 md:p-12 border border-zinc-800"
-            onSubmit={(e) => e.preventDefault()}
           >
+            {/* FormSubmit Configuration */}
+            <input type="hidden" name="_subject" value="New Coaching Application!" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
@@ -448,6 +453,8 @@ export default function App() {
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  required
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
                   placeholder="John Doe"
                 />
@@ -458,6 +465,8 @@ export default function App() {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  required
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
                   placeholder="john@example.com"
                 />
@@ -468,6 +477,8 @@ export default function App() {
                 </label>
                 <input
                   type="number"
+                  name="age"
+                  required
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
                   placeholder="25"
                 />
@@ -476,7 +487,7 @@ export default function App() {
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
                   Gender
                 </label>
-                <select className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors appearance-none">
+                <select name="gender" required className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors appearance-none">
                   <option>Select...</option>
                   <option>Male</option>
                   <option>Female</option>
@@ -504,7 +515,9 @@ export default function App() {
                   >
                     <input
                       type="radio"
-                      name="goal"
+                      name="primary_goal"
+                      value={goal}
+                      required
                       className="w-4 h-4 text-[#8B0000] bg-zinc-800 border-zinc-700 focus:ring-[#8B0000] focus:ring-2"
                     />
                     <span className="ml-3 text-sm font-medium">{goal}</span>
@@ -520,6 +533,8 @@ export default function App() {
                 </label>
                 <input
                   type="text"
+                  name="current_weight"
+                  required
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
                 />
               </div>
@@ -529,6 +544,8 @@ export default function App() {
                 </label>
                 <input
                   type="text"
+                  name="target_weight"
+                  required
                   className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
                 />
               </div>
@@ -539,6 +556,8 @@ export default function App() {
                 Training Experience & Current Routine
               </label>
               <textarea
+                name="training_experience"
+                required
                 rows={4}
                 className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors resize-none"
                 placeholder="Tell me about your current fitness level..."
@@ -550,6 +569,7 @@ export default function App() {
                 Injuries or Health Conditions
               </label>
               <textarea
+                name="injuries_or_conditions"
                 rows={2}
                 className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors resize-none"
                 placeholder="List any physical limitations..."
@@ -570,23 +590,22 @@ export default function App() {
       <section className="py-2 bg-zinc-950 overflow-hidden">
         <div className="flex w-[200%] animate-[marquee_20s_linear_infinite]">
           {[...Array(8)].map((_, i) => (
-            <a 
-              key={i} 
-              href="https://www.instagram.com/lukefenners" 
-              target="_blank" 
+            <a
+              key={i}
+              href="https://www.instagram.com/lukefenners"
+              target="_blank"
               rel="noopener noreferrer"
               className="w-1/4 md:w-1/6 lg:w-[12.5%] p-1 relative group block"
             >
               <div className="aspect-square relative overflow-hidden bg-zinc-900">
                 <img
-                  src={`https://images.unsplash.com/photo-${
-                    [
-                      "1517836357463-d25dfeac3438",
-                      "1534438327276-14e5300c3a48",
-                      "1581009146145-b5ef050c2e1e",
-                      "1571019614242-c5c5dee9f50b",
-                    ][i % 4]
-                  }?q=80&w=500&auto=format&fit=crop`}
+                  src={`https://images.unsplash.com/photo-${[
+                    "1517836357463-d25dfeac3438",
+                    "1534438327276-14e5300c3a48",
+                    "1581009146145-b5ef050c2e1e",
+                    "1571019614242-c5c5dee9f50b",
+                  ][i % 4]
+                    }?q=80&w=500&auto=format&fit=crop`}
                   alt="Instagram feed"
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   referrerPolicy="no-referrer"
@@ -723,15 +742,15 @@ function BMICalculator() {
 
 function LFLogo({ className }: { className?: string }) {
   return (
-    <svg 
-      viewBox="0 0 60 80" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg" 
+    <svg
+      viewBox="0 0 60 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <path 
-        d="M 0 0 L 0 60 L 20 60 L 20 80 L 30 70 L 30 40 L 40 40 L 50 30 L 30 30 L 30 20 L 50 20 L 60 10 L 20 10 L 20 50 L 10 50 L 10 10 Z" 
-        fill="currentColor" 
+      <path
+        d="M 0 0 L 0 60 L 20 60 L 20 80 L 30 70 L 30 40 L 40 40 L 50 30 L 30 30 L 30 20 L 50 20 L 60 10 L 20 10 L 20 50 L 10 50 L 10 10 Z"
+        fill="currentColor"
       />
     </svg>
   );
