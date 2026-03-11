@@ -321,7 +321,7 @@ export default function App() {
             >
               <div className="aspect-[3/4] relative z-10">
                 <img
-                  src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop"
+                  src="/coach.jpg"
                   alt="Coach Portrait"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   referrerPolicy="no-referrer"
@@ -654,14 +654,14 @@ export default function App() {
 
       {/* 7. Social Proof / Community */}
       <section className="py-2 bg-zinc-950 overflow-hidden">
-        <div className="flex w-[200%] animate-[marquee_20s_linear_infinite]">
-          {INSTAGRAM_PHOTOS.map((src, i) => (
+        <div className="flex w-max animate-[marquee_20s_linear_infinite]">
+          {[...INSTAGRAM_PHOTOS, ...INSTAGRAM_PHOTOS].map((src, i) => (
             <a
               key={i}
               href="https://www.instagram.com/lukefenners"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-1/4 md:w-1/6 lg:w-[12.5%] p-1 relative group block"
+              className="w-[50vw] md:w-[25vw] lg:w-[12.5vw] p-1 relative group block shrink-0"
             >
               <div className="aspect-square relative overflow-hidden bg-zinc-900">
                 <img
