@@ -259,8 +259,8 @@ export default function App() {
                 <a
                   href="#apply"
                   className={`w-full py-3 text-center font-bold uppercase tracking-wider text-sm transition-colors ${pkg.highlight
-                      ? "bg-[#8B0000] hover:bg-red-900 text-white"
-                      : "bg-zinc-800 hover:bg-zinc-700 text-white"
+                    ? "bg-[#8B0000] hover:bg-red-900 text-white"
+                    : "bg-zinc-800 hover:bg-zinc-700 text-white"
                     }`}
                 >
                   Choose Plan
@@ -321,7 +321,7 @@ export default function App() {
             >
               <div className="aspect-[3/4] relative z-10">
                 <img
-                  src="/coach.jpg"
+                  src="/public/coach.jpg"
                   alt="Coach Portrait"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   referrerPolicy="no-referrer"
