@@ -19,15 +19,15 @@ const BRAND_RED = "#8B0000";
 // You can right-click an image on Instagram and select "Copy image address"
 // or upload your photos to a hosting service and paste the links here.
 // ============================================================================
-const INSTAGRAM_PHOTOS = [
-  "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=500&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=500&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=500&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1548690312-e3b507d8c110?q=80&w=500&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=500&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=500&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1526506114642-54fc5f11501e?q=80&w=500&auto=format&fit=crop",
+// ============================================================================
+// INSTAGRAM VIDEOS
+// ============================================================================
+const INSTAGRAM_VIDEOS = [
+  "https://www.instagram.com/p/DVy7Nf-iC7w/embed",
+  "https://www.instagram.com/p/DVZHu_nCE26/embed",
+  "https://www.instagram.com/p/DVQoE6SiB_W/embed",
+  "https://www.instagram.com/p/DVNyJzGiHKA/embed",
+  "https://www.instagram.com/p/DU9m8glCM2B/embed",
 ];
 
 export default function App() {
@@ -280,7 +280,7 @@ export default function App() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-            <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-zinc-800 -translate-y-1/2 z-0" />
+            <div className="hidden md:block absolute top-[45px] left-0 w-full h-0.5 bg-zinc-800 -translate-y-1/2 z-0" />
             {[
               { step: "01", title: "Apply", desc: "Fill out the detailed form below." },
               { step: "02", title: "Consult", desc: "We discuss your goals and history." },
@@ -653,29 +653,36 @@ export default function App() {
       </section>
 
       {/* 7. Social Proof / Community */}
-      <section className="py-2 bg-zinc-950 overflow-hidden">
-        <div className="flex w-max animate-[marquee_20s_linear_infinite]">
-          {[...INSTAGRAM_PHOTOS, ...INSTAGRAM_PHOTOS].map((src, i) => (
-            <a
-              key={i}
-              href="https://www.instagram.com/lukefenners"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-[50vw] md:w-[25vw] lg:w-[12.5vw] p-1 relative group block shrink-0"
-            >
-              <div className="aspect-square relative overflow-hidden bg-zinc-900">
-                <img
-                  src={src}
-                  alt="Instagram feed"
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Instagram className="w-8 h-8 text-white" />
+      <section className="py-24 bg-zinc-950 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-heading font-extrabold uppercase tracking-tight mb-4">
+              Follow on <span className="text-[#8B0000]">Instagram</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Join the community and follow the journey.
+            </p>
+          </div>
+
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {INSTAGRAM_VIDEOS.map((src, i) => (
+              <div
+                key={i}
+                className="snap-center shrink-0 w-[85%] sm:w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.667rem)] lg:w-[calc(20%-0.8rem)] relative rounded-sm overflow-hidden bg-zinc-900"
+              >
+                <div className="aspect-square relative w-full h-full">
+                  <iframe
+                    src={src}
+                    className="absolute inset-0 w-full h-full border-0"
+                    scrolling="no"
+                    allowTransparency={true}
+                    allow="encrypted-media"
+                    title={`Instagram Video ${i + 1}`}
+                  />
                 </div>
               </div>
-            </a>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
