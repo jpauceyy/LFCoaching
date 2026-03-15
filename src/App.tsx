@@ -471,6 +471,7 @@ export default function App() {
       </section>
 
       {/* 4. Fitness Goal Form (Lead Capture) */}
+      {/* 4. Fitness Goal Form (Lead Capture) */}
       <section id="apply" className="py-24 bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -483,107 +484,190 @@ export default function App() {
             </p>
           </div>
 
-          <form action="https://formspree.io/f/contact@lukefenners.com" method="POST" class="space-y-8">
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="flex flex-col gap-2">
-                <label class="text-xs font-bold uppercase tracking-widest text-zinc-500">Full Name</label>
-                <input type="text" name="name" placeholder="John Doe" required
-                  class="bg-[#1a1a1a] border border-zinc-800 rounded p-4 focus:outline-none focus:border-red-700 transition">
+          {isSubmitted ? (
+            <div className="bg-zinc-950 p-8 md:p-12 border border-zinc-800 text-center space-y-6">
+              <div className="w-20 h-20 bg-[#8B0000]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Check className="w-10 h-10 text-[#8B0000]" />
+              </div>
+              <h3 className="text-3xl font-heading font-extrabold uppercase tracking-tight text-white">
+                Application Received
+              </h3>
+              <p className="text-gray-400 max-w-md mx-auto">
+                Thank you for applying. I'll review your details and get back to you at the email provided within 24-48 hours.
+              </p>
+              <button
+                onClick={() => setIsSubmitted(false)}
+                className="mt-8 text-[#8B0000] hover:text-red-400 transition-colors font-bold uppercase tracking-wider text-sm"
+              >
+                Submit Another Application
+              </button>
+            </div>
+          ) : (
+            <form
+              onSubmit={handleFormSubmit}
+              className="space-y-8 bg-zinc-950 p-8 md:p-12 border border-zinc-800"
+            >
+              {/* FormSubmit Configuration */}
+              <input type="hidden" name="_subject" value="New Coaching Application!" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
+                    placeholder="john@example.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                    Age
+                  </label>
+                  <input
+                    type="number"
+                    name="age"
+                    required
+                    className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
+                    placeholder="25"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                    Gender
+                  </label>
+                  <select name="gender" required className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors appearance-none">
+                    <option>Select...</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="text-xs font-bold uppercase tracking-widest text-zinc-500">Email Address</label>
-                <input type="email" name="email" placeholder="john@example.com" required
-                  class="bg-[#1a1a1a] border border-zinc-800 rounded p-4 focus:outline-none focus:border-red-700 transition">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">
+                  Primary Goal
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[
+                    "Weight Loss",
+                    "Weight Gain / Muscle",
+                    "Strength Training",
+                    "General Fitness",
+                    "Athlete Performance",
+                    "Other",
+                  ].map((goal) => (
+                    <label
+                      key={goal}
+                      className="flex items-center p-4 border border-zinc-800 bg-zinc-900 rounded-sm cursor-pointer hover:border-[#8B0000] transition-colors has-[:checked]:border-[#8B0000] has-[:checked]:bg-[#8B0000]/10"
+                    >
+                      <input
+                        type="radio"
+                        name="primary_goal"
+                        value={goal}
+                        required
+                        className="w-4 h-4 text-[#8B0000] bg-zinc-800 border-zinc-700 focus:ring-[#8B0000] focus:ring-2"
+                      />
+                      <span className="ml-3 text-sm font-medium">{goal}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="text-xs font-bold uppercase tracking-widest text-zinc-500">Age</label>
-                <input type="number" name="age" placeholder="25"
-                  class="bg-[#1a1a1a] border border-zinc-800 rounded p-4 focus:outline-none focus:border-red-700 transition">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                    Current Weight (kg/lbs)
+                  </label>
+                  <input
+                    type="text"
+                    name="current_weight"
+                    required
+                    className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                    Target Weight (kg/lbs)
+                  </label>
+                  <input
+                    type="text"
+                    name="target_weight"
+                    required
+                    className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors"
+                  />
+                </div>
               </div>
 
-              <div class="flex flex-col gap-2">
-                <label class="text-xs font-bold uppercase tracking-widest text-zinc-500">Gender</label>
-                <select name="gender" class="bg-[#1a1a1a] border border-zinc-800 rounded p-4 focus:outline-none focus:border-red-700 transition appearance-none">
-                  <option value="">Select...</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                  Training Experience & Current Routine
+                </label>
+                <textarea
+                  name="training_experience"
+                  required
+                  rows={4}
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors resize-none"
+                  placeholder="Tell me about your current fitness level..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                  Injuries or Health Conditions
+                </label>
+                <textarea
+                  name="injuries_or_conditions"
+                  rows={2}
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors resize-none"
+                  placeholder="List any physical limitations..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                  Package of Interest
+                </label>
+                <select
+                  name="package"
+                  required
+                  defaultValue=""
+                  className="w-full bg-zinc-900 border border-zinc-800 rounded-sm p-4 text-white focus:border-[#8B0000] focus:ring-1 focus:ring-[#8B0000] outline-none transition-colors appearance-none"
+                >
+                  <option value="" disabled>Select a package...</option>
+                  <option value="Starter">Starter (£49)</option>
+                  <option value="Pro">Pro (£99)</option>
+                  <option value="Elite">Elite (£149)</option>
+                  <option value="Elite Plus">Elite Plus (£199)</option>
                 </select>
               </div>
-            </div>
 
-            <div>
-              <label class="text-xs font-bold uppercase tracking-widest text-zinc-500 block mb-3">Selected Package</label>
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <label class="flex items-center gap-3 bg-[#1a1a1a] border border-zinc-800 p-4 rounded cursor-pointer hover:border-zinc-600 transition">
-                  <input type="radio" name="package" value="Starter" class="accent-red-700 w-4 h-4">
-                    <span class="text-sm font-medium">Starter</span>
-                </label>
-                <label class="flex items-center gap-3 bg-[#1a1a1a] border border-zinc-800 p-4 rounded cursor-pointer hover:border-zinc-600 transition">
-                  <input type="radio" name="package" value="Pro" class="accent-red-700 w-4 h-4">
-                    <span class="text-sm font-medium">Pro</span>
-                </label>
-                <label class="flex items-center gap-3 bg-[#1a1a1a] border border-zinc-800 p-4 rounded cursor-pointer hover:border-zinc-600 transition">
-                  <input type="radio" name="package" value="Elite" class="accent-red-700 w-4 h-4">
-                    <span class="text-sm font-medium">Elite</span>
-                </label>
-                <label class="flex items-center gap-3 bg-[#1a1a1a] border border-zinc-800 p-4 rounded cursor-pointer hover:border-zinc-600 transition">
-                  <input type="radio" name="package" value="Elite Plus" class="accent-red-700 w-4 h-4">
-                    <span class="text-sm font-medium">Elite+</span>
-                </label>
-              </div>
-            </div>
-
-            <div>
-              <label class="text-xs font-bold uppercase tracking-widest text-zinc-500 block mb-3">Primary Goal</label>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <label class="flex items-center gap-3 bg-[#1a1a1a] border border-zinc-800 p-4 rounded cursor-pointer hover:border-zinc-600 transition">
-                  <input type="radio" name="goal" value="Weight Loss" class="accent-red-700 w-4 h-4">
-                    <span class="text-sm font-medium">Weight Loss</span>
-                </label>
-                <label class="flex items-center gap-3 bg-[#1a1a1a] border border-zinc-800 p-4 rounded cursor-pointer hover:border-zinc-600 transition">
-                  <input type="radio" name="goal" value="Muscle Gain" class="accent-red-700 w-4 h-4">
-                    <span class="text-sm font-medium">Muscle Gain</span>
-                </label>
-                <label class="flex items-center gap-3 bg-[#1a1a1a] border border-zinc-800 p-4 rounded cursor-pointer hover:border-zinc-600 transition">
-                  <input type="radio" name="goal" value="Strength" class="accent-red-700 w-4 h-4">
-                    <span class="text-sm font-medium">Strength Training</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="flex flex-col gap-2">
-                <label class="text-xs font-bold uppercase tracking-widest text-zinc-500">Current Weight (kg/lbs)</label>
-                <input type="text" name="current_weight" class="bg-[#1a1a1a] border border-zinc-800 rounded p-4 focus:outline-none focus:border-red-700 transition">
-              </div>
-              <div class="flex flex-col gap-2">
-                <label class="text-xs font-bold uppercase tracking-widest text-zinc-500">Target Weight (kg/lbs)</label>
-                <input type="text" name="target_weight" class="bg-[#1a1a1a] border border-zinc-800 rounded p-4 focus:outline-none focus:border-red-700 transition">
-              </div>
-            </div>
-
-            <div class="flex flex-col gap-2">
-              <label class="text-xs font-bold uppercase tracking-widest text-zinc-500">Training Experience & Current Routine</label>
-              <textarea name="experience" placeholder="Tell me about your current fitness level..."
-                class="bg-[#1a1a1a] border border-zinc-800 rounded p-4 h-32 focus:outline-none focus:border-red-700 transition"></textarea>
-            </div>
-
-            <div class="flex flex-col gap-2">
-              <label class="text-xs font-bold uppercase tracking-widest text-zinc-500">Injuries or Health Conditions</label>
-              <textarea name="injuries" placeholder="List any physical limitations..."
-                class="bg-[#1a1a1a] border border-zinc-800 rounded p-4 h-32 focus:outline-none focus:border-red-700 transition"></textarea>
-            </div>
-
-            <button type="submit"
-              class="w-full bg-[#990000] hover:bg-red-700 text-white font-extrabold uppercase tracking-[0.2em] py-5 rounded transition shadow-lg active:scale-[0.98]">
-              Get My Plan
-            </button>
-
-          </form>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-[#8B0000] hover:bg-red-900 disabled:bg-zinc-800 disabled:text-zinc-500 text-white px-8 py-5 rounded-sm font-extrabold uppercase tracking-widest text-lg transition-all hover:scale-[1.02] disabled:hover:scale-100"
+              >
+                {isSubmitting ? "Submitting..." : "Get My Plan"}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
